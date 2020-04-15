@@ -1,7 +1,6 @@
 package com.hanjie.multichiocedialog;
 
 import android.app.AlertDialog;
-import android.app.Application;
 import android.content.Context;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -16,7 +15,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -73,7 +71,7 @@ public class MultiChioceDialog extends AlertDialog{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_layout);
+        setContentView(R.layout.hanjie_dialog_layout);
         this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay(); //获取屏幕宽高
@@ -101,7 +99,7 @@ public class MultiChioceDialog extends AlertDialog{
         sure_btn=findViewById(R.id.sure_btn);
         btn_linear=findViewById(R.id.btn_linear);
         if(dataList!=null){
-            myAdapter=new MyAdapter(context,R.layout.list_item,dataList);
+            myAdapter=new MyAdapter(context,R.layout.hanjie_list_item,dataList);
             myAdapter.setMultiChioce(isMultiChioce);
             if(checkedItem!=null){
                 myAdapter.setCheckedItem(checkedItem);
@@ -126,7 +124,7 @@ public class MultiChioceDialog extends AlertDialog{
                             search_dataList.add(sortModel);
                         }
                     }
-                    myAdapter=new MyAdapter(context,R.layout.list_item,search_dataList);
+                    myAdapter=new MyAdapter(context,R.layout.hanjie_list_item,search_dataList);
                     myAdapter.setMultiChioce(isMultiChioce);
                     if(checkedItem!=null){
                         myAdapter.setCheckedItem(checkedItem);
@@ -141,7 +139,7 @@ public class MultiChioceDialog extends AlertDialog{
             public void onClick(View v) {
                 search_edit.setText("");
                 search_dataList.clear();
-                myAdapter=new MyAdapter(context,R.layout.list_item,dataList);
+                myAdapter=new MyAdapter(context,R.layout.hanjie_list_item,dataList);
                 myAdapter.setMultiChioce(isMultiChioce);
                 if(checkedItem!=null){
                     myAdapter.setCheckedItem(checkedItem);
@@ -203,7 +201,7 @@ public class MultiChioceDialog extends AlertDialog{
     protected void onStop() {
         super.onStop();
     }
-    public void setOnPositionClickListener(OnPositiveClickListener l){
+    public void setOnPositiveClickListener(OnPositiveClickListener l){
         this.onPositiveClickListener=l;
     }
     public interface OnPositiveClickListener{

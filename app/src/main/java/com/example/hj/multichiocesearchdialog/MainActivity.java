@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         multiChioceDialog.setDataList(list);
         multiChioceDialog.setCheckedItem(checkItem1);
         multiChioceDialog.setMultiChioce(true);
-        multiChioceDialog.setOnPositionClickListener(new MultiChioceDialog.OnPositiveClickListener() {
+        multiChioceDialog.setOnPositiveClickListener(new MultiChioceDialog.OnPositiveClickListener() {
             @Override
             public void click(String name, String code, boolean[] checkItem) {
                 showText.setText(name);
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         multiChioceDialog.setTitleStr("单选测试");
         multiChioceDialog.setDataList(list);
         multiChioceDialog.setMultiChioce(false);
-        multiChioceDialog.setOnPositionClickListener(new MultiChioceDialog.OnPositiveClickListener() {
+        multiChioceDialog.setOnPositiveClickListener(new MultiChioceDialog.OnPositiveClickListener() {
             @Override
             public void click(String name, String code, boolean[] checkItem) {
                 showText.setText(name);
