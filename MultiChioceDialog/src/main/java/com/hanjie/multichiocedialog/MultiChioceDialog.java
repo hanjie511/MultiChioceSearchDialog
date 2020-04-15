@@ -19,12 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class MultiChioceDialog extends AlertDialog{
     private Context context;
@@ -44,7 +41,7 @@ public class MultiChioceDialog extends AlertDialog{
     int i=0;
     private LinearLayout btn_linear;
     private boolean[] checkedItem;
-
+    private OnPositiveClickListener onPositiveClickListener;
     public void setCheckedItem(boolean[] checkedItem) {
         this.checkedItem = checkedItem;
         MyApplication.checked_item=checkedItem;
@@ -77,7 +74,6 @@ public class MultiChioceDialog extends AlertDialog{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_layout);
-        EventBus.getDefault().register(this);
         this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay(); //获取屏幕宽高
@@ -115,9 +111,6 @@ public class MultiChioceDialog extends AlertDialog{
         if(!isMultiChioce){
             btn_linear.setVisibility(View.GONE);
         }
-    }
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void receiveEvent(EventBusTools event){
     }
     private void initEvent(){
         search_btn.setOnClickListener(new View.OnClickListener() {
@@ -184,7 +177,7 @@ public class MultiChioceDialog extends AlertDialog{
 
                     }
                 }
-                EventBus.getDefault().post(new EventBusTools("multi",name,code,MyApplication.checked_item));
+                onPositiveClickListener.click(name,code,MyApplication.checked_item);
                 dismiss();
             }
         });
@@ -200,6 +193,7 @@ public class MultiChioceDialog extends AlertDialog{
                 if(!isMultiChioce){
                     SortModel sortModel=(SortModel) parent.getAdapter().getItem(position);
                     EventBus.getDefault().post(new EventBusTools("single",sortModel.getName(),sortModel.getCode()));
+                    onPositiveClickListener.click(sortModel.getName(),sortModel.getCode(),null);
                     dismiss();
                 }
             }
@@ -208,6 +202,11 @@ public class MultiChioceDialog extends AlertDialog{
     @Override
     protected void onStop() {
         super.onStop();
-        EventBus.getDefault().unregister(this);
+    }
+    public void setOnPositionClickListener(OnPositiveClickListener l){
+        this.onPositiveClickListener=l;
+    }
+    public interface OnPositiveClickListener{
+        void click(String name,String code,boolean [] checkItem);
     }
 }

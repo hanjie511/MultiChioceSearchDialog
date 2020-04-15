@@ -20,29 +20,36 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private TextView showText;
     private MultiChioceDialog multiChioceDialog;
-    private boolean[] checkItem;
+    private boolean[] checkItem1;
     private boolean isFirst=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        EventBus.getDefault().register(this);
         showText=findViewById(R.id.showText);
     }
     public void multi(View v){
         multiChioceDialog=new MultiChioceDialog(MainActivity.this);
         ArrayList<SortModel> list=new PinyinUtils().getSortedListByAlpha(getList());
         if(isFirst){
-            checkItem=new boolean[list.size()];
-            for(int i=0;i<checkItem.length;i++){
-                checkItem[i]=false;
+            checkItem1=new boolean[list.size()];
+            for(int i=0;i<checkItem1.length;i++){
+                checkItem1[i]=false;
             }
             isFirst=false;
         }
         multiChioceDialog.setTitleStr("多选测试");
         multiChioceDialog.setDataList(list);
-        multiChioceDialog.setCheckedItem(checkItem);
+        multiChioceDialog.setCheckedItem(checkItem1);
         multiChioceDialog.setMultiChioce(true);
+        multiChioceDialog.setOnPositionClickListener(new MultiChioceDialog.OnPositiveClickListener() {
+            @Override
+            public void click(String name, String code, boolean[] checkItem) {
+                showText.setText(name);
+                showText.setTag(code);
+                checkItem1=checkItem;
+            }
+        });
         multiChioceDialog.show();
     }
     public void single(View v){
@@ -50,20 +57,15 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<SortModel> list=new PinyinUtils().getSortedListByAlpha(getList());
         multiChioceDialog.setTitleStr("单选测试");
         multiChioceDialog.setDataList(list);
-        multiChioceDialog.setCheckedItem(checkItem);
         multiChioceDialog.setMultiChioce(false);
+        multiChioceDialog.setOnPositionClickListener(new MultiChioceDialog.OnPositiveClickListener() {
+            @Override
+            public void click(String name, String code, boolean[] checkItem) {
+                showText.setText(name);
+                showText.setTag(code);
+            }
+        });
         multiChioceDialog.show();
-    }
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void receiveEvent(EventBusTools event){
-        if(event.getMsg().equals("single")){
-            showText.setText(event.getName());
-            showText.setTag(event.getCode());
-        }else if(event.getMsg().equals("multi")){
-            showText.setText(event.getName());
-            showText.setTag(event.getCode());
-            checkItem=event.getChecked_item();
-        }
     }
     @Override
     protected void onDestroy() {
