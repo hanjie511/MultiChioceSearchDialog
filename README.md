@@ -38,24 +38,24 @@ implementation 'com.github.hanjie511:MultiChioceSearchDialog:1.0.0'
  multiChioceDialog.setMultiChioce(boolean b);//设置多选或单选true为多选，false为单选
  multiChioceDialog.setCheckedItem(Boolean[] b);//设置记忆选项的Boolean数组，当为多选对话框时，必须设置该方法，单选时，可以忽略
  ```
- * step5  
+ * step5
+ ```java
+ multiChioceDialog.setOnPositiveClickListener(new OnPositiveClickListener() {//获得选择结果
+					
+					@Override
+					public void click(String name, String code, boolean[] check_item) {
+						// TODO Auto-generated method stub
+						object_text.setText(name);
+						object_text.setTag(code);
+						checkItem=check_item;
+					}
+				});
+ ```
+ * step6 
  ```java
  multiChioceDialog.show();//it's show time!!!
  ```
- * step6:接收选择结果
- ```java
- @Subscribe(threadMode = ThreadMode.MAIN)
-    public void receiveEvent(EventBusTools event){
-        if(event.getMsg().equals("single")){//接收单选的结果
-            showText.setText(event.getName());
-            showText.setTag(event.getCode());
-        }else if(event.getMsg().equals("multi")){//接收多选的结果
-            showText.setText(event.getName());
-            showText.setTag(event.getCode());
-            checkItem=event.getChecked_item();//多选时，选择结束后会返回一个哪些项被选择了的boolean类型的记忆数组
-        }
-    }
-```
+
 # 注意事项：  
 请保证引用的项目中有EventBus和pinyin4j这两个第三方库。
 # 节目效果
