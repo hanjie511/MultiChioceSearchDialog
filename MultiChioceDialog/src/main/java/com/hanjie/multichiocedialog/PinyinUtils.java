@@ -78,10 +78,16 @@ public class PinyinUtils {
         @Override
         public int compare(SortModel o1, SortModel o2) {
             if(o1.getSortStr().equals("#")&&!o2.getSortStr().equals("#")){
-                return -1;
-            }else if(!o1.getSortStr().equals("#")&&o2.equals("#")){
+                    return -1;
+            }else if(!o1.getSortStr().equals("#")&&o2.getSortStr().equals("#")){
                 return 1;
-            }else{
+            }else if(o1.getSortStr().equals("#")&&o2.getSortStr().equals("#")){
+                if(o1.getName().equals("#")){
+                    return -1;
+                }else{
+                    return 1;
+                }
+            } else{
                 return o1.getSortStr().compareTo(o2.getSortStr());
             }
         }
