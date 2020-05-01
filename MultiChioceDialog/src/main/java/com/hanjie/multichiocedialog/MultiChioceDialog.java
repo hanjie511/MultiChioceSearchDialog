@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Display;
 import android.view.View;
 import android.view.Window;
@@ -25,8 +27,6 @@ public class MultiChioceDialog extends AlertDialog{
     private Context context;
     private TextView title;
     private EditText search_edit;
-    private ImageButton cancel_btn;
-    private ImageButton search_btn;
     private ListView listView;
     private AlphabetView alphabetView;
     private Button sure_btn;
@@ -79,8 +79,8 @@ public class MultiChioceDialog extends AlertDialog{
         display.getSize(point);
         Window window = getWindow();
         WindowManager.LayoutParams layoutParams = window.getAttributes(); //获取当前对话框的参数值
-        layoutParams.width = (int) (point.x*0.8 ); //宽度设置为屏幕宽度的0.8
-        layoutParams.height = (int) (point.y*0.8); //高度设置为屏幕高度的0.9
+        layoutParams.width = (int) (point.x*0.9 ); //宽度设置为屏幕宽度的0.8
+        layoutParams.height = (int) (point.y*0.9); //高度设置为屏幕高度的0.9
         window.setAttributes(layoutParams);
         initView();
         initEvent();
@@ -90,9 +90,7 @@ public class MultiChioceDialog extends AlertDialog{
         if(titleStr!=null){
             title.setText(titleStr);
         }
-        search_btn=findViewById(R.id.search_btn);
         search_edit=findViewById(R.id.search_edit);
-        cancel_btn=findViewById(R.id.cancel_btn);
         listView=findViewById(R.id.listView);
         alphabetView=findViewById(R.id.alphabetView);
         back_btn=findViewById(R.id.back_btn);
@@ -109,14 +107,21 @@ public class MultiChioceDialog extends AlertDialog{
         if(!isMultiChioce){
             btn_linear.setVisibility(View.GONE);
         }
-    }
-    private void initEvent(){
-        search_btn.setOnClickListener(new View.OnClickListener() {
+        search_edit.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                search_dataList.clear();
-                if(!"".equals(search_edit.getText())){
-                    String content=search_edit.getText().toString();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(!"".equals(s.toString())){
+                    String content=s.toString();
                     Iterator<SortModel> iterator=dataList.iterator();
                     while(iterator.hasNext()){
                         SortModel sortModel=iterator.next();
@@ -130,14 +135,7 @@ public class MultiChioceDialog extends AlertDialog{
                         myAdapter.setCheckedItem(checkedItem);
                     }
                     listView.setAdapter(myAdapter);
-                }
-                }
-
-        });
-        cancel_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                search_edit.setText("");
+                }else{
                 search_dataList.clear();
                 myAdapter=new MyAdapter(context,R.layout.hanjie_list_item,dataList);
                 myAdapter.setMultiChioce(isMultiChioce);
@@ -145,8 +143,11 @@ public class MultiChioceDialog extends AlertDialog{
                     myAdapter.setCheckedItem(checkedItem);
                 }
                 listView.setAdapter(myAdapter);
+                }
             }
         });
+    }
+    private void initEvent(){
         alphabetView.setOnClickListener(new AlphabetView.OnClickListener() {
             @Override
             public void onClick(String alpha) {
@@ -190,7 +191,6 @@ public class MultiChioceDialog extends AlertDialog{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(!isMultiChioce){
                     SortModel sortModel=(SortModel) parent.getAdapter().getItem(position);
-                    EventBus.getDefault().post(new EventBusTools("single",sortModel.getName(),sortModel.getCode()));
                     onPositiveClickListener.click(sortModel.getName(),sortModel.getCode(),null);
                     dismiss();
                 }
