@@ -6,14 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hanjie.multichiocedialog.EventBusTools;
 import com.hanjie.multichiocedialog.MultiChioceDialog;
 import com.hanjie.multichiocedialog.PinyinUtils;
 import com.hanjie.multichiocedialog.SortModel;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
