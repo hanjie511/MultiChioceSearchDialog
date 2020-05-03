@@ -29,7 +29,7 @@ dependencies {
     implementation group: 'org.greenrobot', name: 'eventbus', version: '3.2.0'
     implementation project(path: ':MultiChioceDialog')
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation project(path: ':myrecyclerviewHelper')
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.github.hanjie511:recyclerviewHelper:1.0.0'
 }

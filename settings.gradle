@@ -1,2 +1,2 @@
-include ':app', ':MultiChioceDialog', ':myrecyclerviewHelper'
+include ':app', ':MultiChioceDialog'
 rootProject.name='MultiChioceSearchDialog'
