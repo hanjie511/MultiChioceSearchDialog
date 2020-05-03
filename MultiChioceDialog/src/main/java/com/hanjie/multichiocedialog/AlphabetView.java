@@ -39,10 +39,6 @@ public class AlphabetView extends View  {
             default:
                 index=(int)(y/(max_height/27));
                 click.onClick(alpha[index]);
-//                text.setText(alpha[index]);
-//                text.setVisibility(View.VISIBLE);
-//                animator=ObjectAnimator.ofFloat(text,"alpha",1,0).setDuration(2000);
-//                animator.start();
                 break;
         }
 
