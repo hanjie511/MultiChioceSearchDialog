@@ -55,9 +55,6 @@ implementation 'com.github.hanjie511:MultiChioceSearchDialog:1.1.0'
  ```java
  multiChioceDialog.show();//it's show time!!!
  ```
-
-# 注意事项：  
-请保证引用的项目中有EventBus和pinyin4j这两个第三方库。
 # 节目效果
 ![多选效果](https://github.com/hanjie511/MultiChioceSearchDialog/blob/master/SVID_20200406_192804_1.gif)
 ![单选效果](https://github.com/hanjie511/MultiChioceSearchDialog/blob/master/SVID_20200406_192829_1.gif)
