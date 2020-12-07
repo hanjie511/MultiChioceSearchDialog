@@ -2,6 +2,7 @@ package com.hanjie.multichiocedialog;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,9 +18,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -36,10 +34,12 @@ public class MultiChioceDialog extends AlertDialog{
     private ArrayList<SortModel> search_dataList=new ArrayList<>();
     private String titleStr;
     private boolean isMultiChioce=false;
+    private String titleColor;
     int i=0;
     private LinearLayout btn_linear;
     private boolean[] checkedItem;
     private OnPositiveClickListener onPositiveClickListener;
+    private String titleTextColor;
     public void setCheckedItem(boolean[] checkedItem) {
         this.checkedItem = checkedItem;
         MyApplication.checked_item=checkedItem;
@@ -55,6 +55,12 @@ public class MultiChioceDialog extends AlertDialog{
      */
     public void setTitleStr(String titleStr) {
         this.titleStr = titleStr;
+    }
+    public void setTitleBgColor(String color){
+        this.titleColor=color;
+    }
+    public void setTitleTextColor(String color){
+        this.titleTextColor=color;
     }
     /*
         第二步：设置对话框的数据源
@@ -87,8 +93,14 @@ public class MultiChioceDialog extends AlertDialog{
     }
     private void initView(){
         title=findViewById(R.id.dialog_title);
+        if(titleColor!=null){
+            title.setBackgroundColor(Color.parseColor(titleColor));
+        }
         if(titleStr!=null){
             title.setText(titleStr);
+        }
+        if(titleTextColor!=null){
+            title.setTextColor(Color.parseColor(titleTextColor));
         }
         search_edit=findViewById(R.id.search_edit);
         listView=findViewById(R.id.listView);

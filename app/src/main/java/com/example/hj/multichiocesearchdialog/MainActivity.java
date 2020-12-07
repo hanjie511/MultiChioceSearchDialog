@@ -9,9 +9,6 @@ import android.widget.TextView;
 import com.hanjie.multichiocedialog.MultiChioceDialog;
 import com.hanjie.multichiocedialog.PinyinUtils;
 import com.hanjie.multichiocedialog.SortModel;
-
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -67,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
     }
     private ArrayList<SortModel> getList(){
         SortModel sortModel=null;

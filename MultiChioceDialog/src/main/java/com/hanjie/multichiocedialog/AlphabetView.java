@@ -2,6 +2,7 @@ package com.hanjie.multichiocedialog;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -38,6 +39,9 @@ public class AlphabetView extends View  {
                 break;
             default:
                 index=(int)(y/(max_height/27));
+                if(index>=27){
+                    index=26;
+                }
                 click.onClick(alpha[index]);
                 break;
         }
@@ -45,6 +49,7 @@ public class AlphabetView extends View  {
 
         return true;
     }
+
     public void setOnClickListener(OnClickListener l) {
         click=l;
     }
@@ -53,7 +58,7 @@ public class AlphabetView extends View  {
         super.onDraw(canvas);
         int max_width=this.getWidth();
         int max_height=this.getHeight();
-        canvas.drawColor(Color.WHITE);
+        canvas.drawColor(Color.TRANSPARENT);
         Paint paint=new Paint();
         Paint text_paint=new Paint();
         Paint textAlet_paint=new Paint();
@@ -63,12 +68,13 @@ public class AlphabetView extends View  {
         textAlet_paint.setColor(Color.GRAY);
         textAlet_paint.setTextSize(40);
         RectF rectF=new RectF(max_width-30,5,max_width-5,max_height-5);
-        paint.setColor(Color.DKGRAY);
+        paint.setColor(Color.TRANSPARENT);
         text_paint.setColor(Color.DKGRAY);
-        canvas.drawRoundRect(rectF,15,15,paint);
-        text_paint.setTextSize(20);
+        canvas.drawRoundRect(rectF,0,0,paint);
+        text_paint.setTextSize(30);
+        text_paint.setAntiAlias(true);
         for(int i=0;i<27;i++){
-            canvas.drawText(alpha[i],max_width-25,(max_height/27)*i+(max_height/27)-10,text_paint);
+            canvas.drawText(alpha[i],max_width-30,(max_height/27)*i+(max_height/27)-10,text_paint);
         }
     }
     public interface OnClickListener{
