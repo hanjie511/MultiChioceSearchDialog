@@ -12,7 +12,7 @@ allprojects {
 ```
 如果上面的依赖已经存在，那就直接在你的moudle级别的build.gradle文件中添加如下依赖：  
 ```java
-implementation 'com.github.hanjie511:MultiChioceSearchDialog:1.1.0'
+implementation 'com.github.hanjie511:MultiChioceSearchDialog:v2.0.0'
 ``` 
 * eclipse
 点击链接下载该library的aar文件：  
