@@ -27,7 +27,9 @@ implementation 'com.github.hanjie511:MultiChioceSearchDialog:1.1.0'
  ```
  * step2  
  ```java
- multiChioceDialog.setTitleStr(String title);//设置对话框标题  
+ multiChioceDialog.setTitleStr(String title);//设置对话框标题
+ multiChioceDialog.setTitleBgColor("#000000");//自定义对话框标题栏背景颜色(可以不用设置)
+ multiChioceDialog.setTitleTextColor("#FF32FF");//自定义对话框标题字体颜色(可以不用设置)
  ```
  * step3
  ```java
