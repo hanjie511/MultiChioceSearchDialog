@@ -203,8 +203,10 @@ public class MultiChioceDialog extends AlertDialog{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(!isMultiChioce){
                     SortModel sortModel=(SortModel) parent.getAdapter().getItem(position);
-                    onPositiveClickListener.click(sortModel.getName(),sortModel.getCode(),null);
-                    dismiss();
+                    if(!sortModel.isTag()){
+                        onPositiveClickListener.click(sortModel.getName(),sortModel.getCode(),null);
+                        dismiss();
+                    }
                 }
             }
         });
