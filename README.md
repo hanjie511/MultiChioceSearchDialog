@@ -58,6 +58,6 @@ implementation 'com.github.hanjie511:MultiChioceSearchDialog:1.1.0'
  multiChioceDialog.show();//it's show time!!!
  ```
 # 节目效果
-![多选效果](https://github.com/hanjie511/MultiChioceSearchDialog/blob/master/SVID_20200406_192804_1.gif)
-![单选效果](https://github.com/hanjie511/MultiChioceSearchDialog/blob/master/SVID_20200406_192829_1.gif)
+![多选效果](./Screenshot_20201207_151251.jpg)
+![单选效果](./Screenshot_20201207_151341.jpg)
 
