@@ -23,15 +23,18 @@ public class PinyinUtils {
         hanyuPinyinOutputFormat.setCaseType(HanyuPinyinCaseType.UPPERCASE);
         hanyuPinyinOutputFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
         hanyuPinyinOutputFormat.setVCharType(HanyuPinyinVCharType.WITH_V);
-        char c = str.trim().charAt(0);
-        if (c >= 0x4E00 && c <= 0x9FA5) {//判断是否属于汉字字符
-            try {
-                pinyin = pinyin + PinyinHelper.toHanyuPinyinStringArray(c, hanyuPinyinOutputFormat)[0];
-            } catch (Exception e) {
-                e.printStackTrace();
+        for(int i=0;i<str.length();i++){
+            char c = str.trim().charAt(i);
+            if (c >= 0x4E00 && c <= 0x9FA5) {//判断是否属于汉字字符
+                try {
+                    pinyin = pinyin + PinyinHelper.toHanyuPinyinStringArray(c, hanyuPinyinOutputFormat)[0];
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                pinyin = pinyin + c;
+                pinyin=pinyin.toUpperCase();
             }
-        } else {
-            pinyin = pinyin + c;
         }
         return pinyin;
     }

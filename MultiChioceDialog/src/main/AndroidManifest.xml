@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hanjie.multichiocedialog">
 
-    <application android:name="MyApplication"></application>
+    <application android:name=".MyApplication"
+        ></application>
 
 </manifest>
