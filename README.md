@@ -12,7 +12,7 @@ allprojects {
 ```
 如果上面的依赖已经存在，那就直接在你的moudle级别的build.gradle文件中添加如下依赖：  
 ```java
-implementation 'com.github.hanjie511:MultiChioceSearchDialog:v2.0.0'
+implementation 'com.github.hanjie511:MultiChioceSearchDialog:v2.1.2'
 ``` 
 * eclipse
 点击链接下载该library的aar文件：  
@@ -55,7 +55,7 @@ implementation 'com.github.hanjie511:MultiChioceSearchDialog:v2.0.0'
  ```
  * step6 
  ```java
- multiChioceDialog.show();//it's show time!!!
+ multiChioceDialog.show();
  ```
 # 节目效果
 ![多选效果](./Screenshot_20201207_151251.jpg)
