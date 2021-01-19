@@ -24,7 +24,7 @@ public class PinyinUtils {
         hanyuPinyinOutputFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
         hanyuPinyinOutputFormat.setVCharType(HanyuPinyinVCharType.WITH_V);
         for(int i=0;i<str.length();i++){
-            char c = str.trim().charAt(i);
+            char c = str.charAt(i);
             if (c >= 0x4E00 && c <= 0x9FA5) {//判断是否属于汉字字符
                 try {
                     pinyin = pinyin + PinyinHelper.toHanyuPinyinStringArray(c, hanyuPinyinOutputFormat)[0];
