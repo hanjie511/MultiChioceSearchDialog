@@ -26,6 +26,13 @@ public class MyAdapter extends ArrayAdapter <SortModel>{
 
     public void setCheckedItem(boolean[] checkedItem) {
         this.checkedItem = checkedItem;
+        for(int i=0;i<checkedItem.length;i++){
+            if(checkedItem[i]==true){
+                MyApplication.dataList.get(i).setSelected(true);
+            }else{
+                MyApplication.dataList.get(i).setSelected(false);
+            }
+        }
     }
 
     public boolean[] getCheckedItem() {
@@ -55,7 +62,7 @@ public class MyAdapter extends ArrayAdapter <SortModel>{
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        SortModel sortModel=list.get(position);
+        final SortModel sortModel=list.get(position);
         View view=null;
         if(convertView==null){
             vh=new VH();
@@ -91,18 +98,26 @@ public class MyAdapter extends ArrayAdapter <SortModel>{
                             for(int i=0;i<MyApplication.dataList.size();i++) {
                                 if(tag.equals(MyApplication.dataList.get(i).getCode())) {
                                     MyApplication.checked_item[i]=true;
+                                    MyApplication.dataList.get(i).setSelected(true);
                                 }
                             }
                         }else{
                             for(int i=0;i<MyApplication.dataList.size();i++) {
                                 if(tag.equals(MyApplication.dataList.get(i).getCode())) {
                                     MyApplication.checked_item[i]=false;
+                                    MyApplication.dataList.get(i).setSelected(false);
                                 }
                             }
                         }
                     }
                 });
-                if(MyApplication.checked_item[position]==true&&vh.checkBox.getTag().equals(MyApplication.dataList.get(position).getCode())) {
+
+//                if(MyApplication.checked_item[position]==true&&vh.checkBox.getTag().equals(MyApplication.dataList.get(position).getCode())) {
+//                    vh.checkBox.setChecked(true);
+//                }else{
+//                    vh.checkBox.setChecked(false);
+//                }
+                if(sortModel.isSelected()) {
                     vh.checkBox.setChecked(true);
                 }else{
                     vh.checkBox.setChecked(false);

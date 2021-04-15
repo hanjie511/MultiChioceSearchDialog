@@ -36,6 +36,7 @@ public class PinyinUtils {
                 pinyin=pinyin.toUpperCase();
             }
         }
+        System.out.println("pinyin:"+pinyin);
         return pinyin;
     }
     /*
@@ -56,10 +57,12 @@ public class PinyinUtils {
                 set.add(alpha);
                 sortModel.setSortStr(py_str);
                 sortModel.setTag(false);
+                sortModel.setSelected(false);
             }else{
                 set.add('#');
                 sortModel.setSortStr("#");
                 sortModel.setTag(false);
+                sortModel.setSelected(false);
             }
             total_list.add(sortModel);
         }
@@ -69,6 +72,7 @@ public class PinyinUtils {
             sortModel=new SortModel();
             sortModel.setName(c);
             sortModel.setTag(true);
+            sortModel.setSelected(false);
             sortModel.setSortStr(c);
             total_list.add(sortModel);
         }

@@ -1,6 +1,7 @@
 package com.hanjie.multichiocedialog;
 
 import android.app.AlertDialog;
+import android.app.Application;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -68,6 +69,7 @@ public class MultiChioceDialog extends AlertDialog{
     public void setDataList(ArrayList<SortModel> dataList) {
         this.dataList = dataList;
         MyApplication.dataList=this.dataList;
+
     }
     public MultiChioceDialog(Context context) {
         super(context);
@@ -108,12 +110,12 @@ public class MultiChioceDialog extends AlertDialog{
         back_btn=findViewById(R.id.back_btn);
         sure_btn=findViewById(R.id.sure_btn);
         btn_linear=findViewById(R.id.btn_linear);
-        if(dataList!=null){
-            myAdapter=new MyAdapter(context,R.layout.hanjie_list_item,dataList);
-            myAdapter.setMultiChioce(isMultiChioce);
+        if(MyApplication.dataList!=null){
+            myAdapter=new MyAdapter(context,R.layout.hanjie_list_item,MyApplication.dataList);
             if(checkedItem!=null){
                 myAdapter.setCheckedItem(checkedItem);
             }
+            myAdapter.setMultiChioce(isMultiChioce);
             listView.setAdapter(myAdapter);
         }
         if(!isMultiChioce){
@@ -134,7 +136,7 @@ public class MultiChioceDialog extends AlertDialog{
             public void afterTextChanged(Editable s) {
                 if(!"".equals(s.toString())){
                     String content=s.toString();
-                    Iterator<SortModel> iterator=dataList.iterator();
+                    Iterator<SortModel> iterator= MyApplication.dataList.iterator();
                     while(iterator.hasNext()){
                         SortModel sortModel=iterator.next();
                         if(sortModel.getName().contains(content)){
@@ -149,7 +151,7 @@ public class MultiChioceDialog extends AlertDialog{
                     listView.setAdapter(myAdapter);
                 }else{
                 search_dataList.clear();
-                myAdapter=new MyAdapter(context,R.layout.hanjie_list_item,dataList);
+                myAdapter=new MyAdapter(context,R.layout.hanjie_list_item,MyApplication.dataList);
                 myAdapter.setMultiChioce(isMultiChioce);
                 if(checkedItem!=null){
                     myAdapter.setCheckedItem(checkedItem);
@@ -163,7 +165,7 @@ public class MultiChioceDialog extends AlertDialog{
         alphabetView.setOnClickListener(new AlphabetView.OnClickListener() {
             @Override
             public void onClick(String alpha) {
-                Iterator<SortModel> iterator=dataList.iterator();
+                Iterator<SortModel> iterator=MyApplication.dataList.iterator();
                 SortModel sortModel=null;
                 i=0;
                 while(iterator.hasNext()){
@@ -183,8 +185,8 @@ public class MultiChioceDialog extends AlertDialog{
                 String code="";
                 for(int i=0;i<MyApplication.checked_item.length;i++){
                     if(MyApplication.checked_item[i]==true){
-                        name=name+dataList.get(i).getName()+",";
-                        code=code+dataList.get(i).getCode()+",";
+                        name=name+MyApplication.dataList.get(i).getName()+",";
+                        code=code+MyApplication.dataList.get(i).getCode()+",";
 
                     }
                 }

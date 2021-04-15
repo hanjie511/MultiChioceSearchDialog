@@ -14,6 +14,15 @@ public class SortModel {
     private String code;
     private String sortStr;
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    private boolean selected;
 
     public String getName() {
         return name;
