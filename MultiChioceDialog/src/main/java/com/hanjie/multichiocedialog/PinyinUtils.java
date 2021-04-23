@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.UUID;
 
 public class PinyinUtils {
     /*
@@ -58,11 +59,13 @@ public class PinyinUtils {
                 sortModel.setSortStr(py_str);
                 sortModel.setTag(false);
                 sortModel.setSelected(false);
+                sortModel.setId(UUID.randomUUID().toString());
             }else{
                 set.add('#');
                 sortModel.setSortStr("#");
                 sortModel.setTag(false);
                 sortModel.setSelected(false);
+                sortModel.setId(UUID.randomUUID().toString());
             }
             total_list.add(sortModel);
         }
@@ -74,6 +77,7 @@ public class PinyinUtils {
             sortModel.setTag(true);
             sortModel.setSelected(false);
             sortModel.setSortStr(c);
+            sortModel.setId(UUID.randomUUID().toString());
             total_list.add(sortModel);
         }
         Collections.sort(total_list,new PinYinComparator());

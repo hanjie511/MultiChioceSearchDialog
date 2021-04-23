@@ -80,15 +80,15 @@ public class MyAdapter extends ArrayAdapter <SortModel>{
                 vh.linear.setVisibility(View.GONE);
                 vh.groupText.setVisibility(View.VISIBLE);
                 vh.groupText.setText(sortModel.getName());
-                vh.username.setTag(sortModel.getCode());
+                vh.username.setTag(sortModel.getId());
 
         }else{
             vh.linear.setVisibility(View.VISIBLE);
             vh.groupText.setVisibility(View.GONE);
             vh.username.setText(sortModel.getName());
-            vh.username.setTag(sortModel.getCode());
+            vh.username.setTag(sortModel.getId());
             if(isMultiChioce&&checkedItem!=null){
-                vh.checkBox.setTag(sortModel.getCode());
+                vh.checkBox.setTag(sortModel.getId());
                 vh.checkBox.setVisibility(View.VISIBLE);
                 vh.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
@@ -96,14 +96,14 @@ public class MyAdapter extends ArrayAdapter <SortModel>{
                         String tag=buttonView.getTag().toString();
                         if(isChecked){
                             for(int i=0;i<MyApplication.dataList.size();i++) {
-                                if(tag.equals(MyApplication.dataList.get(i).getCode())) {
+                                if(tag.equals(MyApplication.dataList.get(i).getId())) {
                                     MyApplication.checked_item[i]=true;
                                     MyApplication.dataList.get(i).setSelected(true);
                                 }
                             }
                         }else{
                             for(int i=0;i<MyApplication.dataList.size();i++) {
-                                if(tag.equals(MyApplication.dataList.get(i).getCode())) {
+                                if(tag.equals(MyApplication.dataList.get(i).getId())) {
                                     MyApplication.checked_item[i]=false;
                                     MyApplication.dataList.get(i).setSelected(false);
                                 }
