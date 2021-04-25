@@ -38,7 +38,8 @@ implementation 'com.github.hanjie511:MultiChioceSearchDialog:2.1.2'
  * step4
  ```java
  multiChioceDialog.setMultiChioce(boolean b);//设置多选或单选true为多选，false为单选
- multiChioceDialog.setCheckedItem(Boolean[] b);//设置记忆选项的Boolean数组，当为多选对话框时，必须设置该方法，单选时，可以忽略
+ multiChioceDialog.setCheckedItem(Boolean[] b);//设置记忆选项的Boolean数组，当为多选对话框时，必须设置该方法，单选时，可以忽略,
+ boolean数组的长度为setDataList方法设置的list的长度。
  ```
  * step5
  ```java
